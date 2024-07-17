@@ -6,6 +6,13 @@ class Book(models.Model):
     """
     Model for representing a book in the library database.
     """
+    RATING_CHOICES = [
+        (1, '1'),
+        (2, '2'),
+        (3, '3'),
+        (4, '4'),
+        (5, '5'),
+    ]
     # ForeignKey to the User model provided by Django's authentication system.
     # When a user is deleted, all their books are deleted as well.
     author = models.ForeignKey(get_user_model(), on_delete=models.CASCADE)
@@ -14,7 +21,7 @@ class Book(models.Model):
     # A description of the book.
     description = models.TextField()
     # A numerical rating of the book's quality.
-    rating = models.IntegerField()
+    rating = models.PositiveSmallIntegerField(choices=RATING_CHOICES)
     # The date the book was published.
     publish_date = models.DateField()
     
