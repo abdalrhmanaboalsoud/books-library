@@ -17,7 +17,7 @@ class Book(models.Model):
     # When a user is deleted, all their books are deleted as well.
     author = models.ForeignKey(get_user_model(), on_delete=models.CASCADE)
     # The title of the book.
-    title = models.CharField(max_length=100, blank=False, null=False)
+    title = models.CharField(max_length=100, blank=False, null=False, primary_key=True)
     # A description of the book.
     description = models.TextField()
     # A numerical rating of the book's quality.
