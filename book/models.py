@@ -1,11 +1,7 @@
 from django.db import models
 from django.contrib.auth import get_user_model
-# Create your models here.
 
 class Book(models.Model):
-    """
-    Model for representing a book in the library database.
-    """
     RATING_CHOICES = [
         (1, '1'),
         (2, '2'),
@@ -13,22 +9,11 @@ class Book(models.Model):
         (4, '4'),
         (5, '5'),
     ]
-    # ForeignKey to the User model provided by Django's authentication system.
-    # When a user is deleted, all their books are deleted as well.
     author = models.ForeignKey(get_user_model(), on_delete=models.CASCADE)
-    # The title of the book.
-    title = models.CharField(max_length=100, blank=False, null=False, primary_key=True)
-    # A description of the book.
-    description = models.TextField()
-    # A numerical rating of the book's quality.
+    title = models.CharField(max_length=60, blank=False, null=False, primary_key=False)
+    description = models.TextField(max_length=200, blank=True)
     rating = models.PositiveSmallIntegerField(choices=RATING_CHOICES)
-    # The date the book was published.
-    publish_date = models.DateField()
-    
+    publish_date = models.DateTimeField()
 
     def __str__(self):
-        return f'{self.title} by {self.author} (Description: {self.description}) (Rating: {self.rating}) (Publish Date: {self.publish_date})'
-
-
-
-    
+        return self.title
