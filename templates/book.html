@@ -4,7 +4,7 @@
     {% for book in books_list %}
         <div class="card">
             <h2>
-                <a href="{% url 'books_details' book.pk %}">{{ book.title }}</a>
+                <a href="{% url 'books_details' pk=book.pk %}">{{ book.title }}</a>
             </h2>
             <p>Author: {{ book.author }}</p>
             <p>Description: {{ book.description|truncatewords:20 }}</p>
